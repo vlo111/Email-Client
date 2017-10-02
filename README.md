@@ -6,10 +6,10 @@
 </td>
 </tr>
 <tr>
-<td style="width: 707px;">Winforms application, which serves for sending mail through SMTP or a proxy server</td>
+<td align="center">Winforms application, which serves for sending mail through SMTP or a proxy server</td>
 </tr>
 <tr>
-<td style="width: 705px;"><img src="https://image.prntscr.com/image/i2kGmXAWQoyUjqfkvkEEBQ.png" /></td>
+<td ><img src="https://image.prntscr.com/image/i2kGmXAWQoyUjqfkvkEEBQ.png" /></td>
 </tr>
 </tbody>
 </table>
