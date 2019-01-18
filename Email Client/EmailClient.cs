@@ -120,12 +120,12 @@ namespace Email_Client
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
             {
                 e.Handled = true;
-            }	
+            }
         }
 
         private void Send_Click(object sender, EventArgs e)
         {
-            if (this.CheckInputValidation(SmtpServer.Text, SmtpPort.Text, UserName.Text, Password.Text, From.Text, To.Text,Cc.Text,Bcc.Text, ProxyServerTB.Text, ProxyPortTB.Text))
+            if (this.CheckInputValidation(SmtpServer.Text, SmtpPort.Text, UserName.Text, Password.Text, From.Text, To.Text, Cc.Text, Bcc.Text, ProxyServerTB.Text, ProxyPortTB.Text))
             {
                 if (this.EmailValidation(this.From.Text))
                 {
@@ -190,6 +190,7 @@ namespace Email_Client
                             //Thread thread = new Thread(new ParameterizedThreadStart(this.SendEmail));
                             //thread.Start(mail_message);
                             SendEmail(mail_message);
+                            Message_box dialog = new Message_box();
                         }
                         else
                         {
@@ -228,7 +229,7 @@ namespace Email_Client
             if (this.statusStrip.InvokeRequired)
             {
                 DisconnectEventHandler discon = new DisconnectEventHandler(this.smtp_Disconnected);
-                this.Invoke(discon, new object[] { sender,Server });
+                this.Invoke(discon, new object[] { sender, Server });
             }
             else
             {
@@ -257,7 +258,7 @@ namespace Email_Client
             if (this.statusStrip.InvokeRequired)
             {
                 DataTransferEventHandler data = new DataTransferEventHandler(this.smtp_StartedDataTransfer);
-                this.Invoke(data, new object[] { sender});
+                this.Invoke(data, new object[] { sender });
             }
             else
             {
@@ -283,7 +284,7 @@ namespace Email_Client
             if (this.statusStrip.InvokeRequired)
             {
                 AuthenticateEventHandler auth = new AuthenticateEventHandler(this.smtp_AuthenticationBegan);
-                this.Invoke(auth, new object[] { sender, userName});
+                this.Invoke(auth, new object[] { sender, userName });
             }
             else
             {
@@ -321,7 +322,7 @@ namespace Email_Client
         {
             if (e.ClickedItem.Tag == null)
                 return;
-            else if(e.ClickedItem.Tag.ToString() == "Add")
+            else if (e.ClickedItem.Tag.ToString() == "Add")
             {
                 OpenFileDialog dialog = new OpenFileDialog();
 
@@ -453,7 +454,7 @@ namespace Email_Client
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
             {
                 e.Handled = true;
-            }	
+            }
         }
 
         private void Connect_Click(object sender, EventArgs e)
@@ -510,7 +511,7 @@ namespace Email_Client
             }
             else
             {
-                this.ProgressLabel.Text = "Receiving email message"; 
+                this.ProgressLabel.Text = "Receiving email message";
             }
         }
 
@@ -561,7 +562,7 @@ namespace Email_Client
                 this.Invoke(con, new object[] { sender, Server, Port });
             }
             else
-            { 
+            {
                 this.ProgressLabel.Text = "Connecting to pop server \"" + Server + "\" on port " + Port;
             }
         }
@@ -600,8 +601,8 @@ namespace Email_Client
             if (e.Button == MouseButtons.Right && this.MailMessages.SelectedItems.Count > 0)
             {
                 ContextMenuStrip menu = new ContextMenuStrip();
-                Image image = (Image) Email_Client.Properties.Resources.delete;
-                menu.Items.Add("Delete",image);
+                Image image = (Image)Email_Client.Properties.Resources.delete;
+                menu.Items.Add("Delete", image);
                 menu.ItemClicked += new ToolStripItemClickedEventHandler(menu_ItemClicked);
                 menu.Show(Control.MousePosition);
             }
@@ -662,11 +663,11 @@ namespace Email_Client
             selectedFile = selectedFile.Trim(new char[] { '"' });
             string file_name = Path.GetFileNameWithoutExtension(selectedFile);
             string file_extension = Path.GetExtension(selectedFile);
-            
+
             SaveFileDialog obj = new SaveFileDialog();
             obj.Title = "Save a File";
             obj.FileName = file_name;
-            obj.Filter = "Document (*" + file_extension +")|*" + file_extension + "|All Files|*.*";
+            obj.Filter = "Document (*" + file_extension + ")|*" + file_extension + "|All Files|*.*";
             obj.FilterIndex = 1;
 
             if (obj.ShowDialog(this) == DialogResult.OK)
@@ -675,13 +676,13 @@ namespace Email_Client
                 string content_type = "";
                 string attached_file_name = "";
 
-                this.pop.GetMailSection(index,ref content,ref content_type,ref attached_file_name);
+                this.pop.GetMailSection(index, ref content, ref content_type, ref attached_file_name);
                 byte[] decoded_data = MailDecoder.ConvertFromBase64String(content);
                 File.WriteAllBytes(obj.FileName, decoded_data);
-                
+
                 MessageBox.Show(this, "File \"" + Path.GetFileName(obj.FileName) + "\" has saved.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
 
         private void PopAttachments_SelectedIndexChanged(object sender, EventArgs e)
@@ -841,7 +842,7 @@ namespace Email_Client
             if (this.FromPopHeader.InvokeRequired || this.ToPopHeader.InvokeRequired || this.SubjectPopHeader.InvokeRequired)
             {
                 UpdatePopMessageHeaderEventHandler obj = new UpdatePopMessageHeaderEventHandler(this.UpdatePopMessageHeader);
-                this.Invoke(obj, new object[] {from,to,subject });
+                this.Invoke(obj, new object[] { from, to, subject });
             }
             else
             {
@@ -1002,11 +1003,11 @@ namespace Email_Client
                     temp = date_time.ToString("D");
                     date.Add(temp);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     date.Add(obj.Date);
                 }
-                
+
                 size.Add(obj.GetMailSize(i));
             }
 
@@ -1034,87 +1035,23 @@ namespace Email_Client
             {
                 MailMessage mail_message = (MailMessage)mail_msg;
 
-                //SmtpClient smtp = new SmtpClient(this.SmtpServer.Text, Convert.ToInt32(this.SmtpPort.Text));
-                //smtp.UserName = this.UserName.Text;
-                //smtp.Password = this.Password.Text;
+                SmtpClient smtp = new SmtpClient(this.SmtpServer.Text, Convert.ToInt32(this.SmtpPort.Text));
+                smtp.UserName = this.UserName.Text;
+                smtp.Password = this.Password.Text;
 
-                //this.EnableDisableSendButton(false);
+                this.EnableDisableSendButton(false);
 
-                //smtp.ConnectionEstablishing += new ConnectEventHandler(smtp_ConnectionEstablishing);
-                //smtp.ConnectionEstablished += new ConnectEventHandler(smtp_ConnectionEstablished);
-                //smtp.AuthenticationBegan += new AuthenticateEventHandler(smtp_AuthenticationBegan);
-                //smtp.AuthenticationFinished += new AuthenticateEventHandler(smtp_AuthenticationFinished);
-                //smtp.StartedDataTransfer += new DataTransferEventHandler(smtp_StartedDataTransfer);
-                //smtp.EndedDataTransfer += new DataTransferEventHandler(smtp_EndedDataTransfer);
-                //smtp.Disconnected += new DisconnectEventHandler(smtp_Disconnected);
+                smtp.ConnectionEstablishing += new ConnectEventHandler(smtp_ConnectionEstablishing);
+                smtp.ConnectionEstablished += new ConnectEventHandler(smtp_ConnectionEstablished);
+                smtp.AuthenticationBegan += new AuthenticateEventHandler(smtp_AuthenticationBegan);
+                smtp.AuthenticationFinished += new AuthenticateEventHandler(smtp_AuthenticationFinished);
+                smtp.StartedDataTransfer += new DataTransferEventHandler(smtp_StartedDataTransfer);
+                smtp.EndedDataTransfer += new DataTransferEventHandler(smtp_EndedDataTransfer);
+                smtp.Disconnected += new DisconnectEventHandler(smtp_Disconnected);
 
-                //smtp.SendMail(mail_message);
-
-                //  The mailman object is used for sending and receiving email.
-                Chilkat.MailMan mailman = new Chilkat.MailMan();
-
-                //  Any string argument automatically begins the 30-day trial.
-                bool success = mailman.UnlockComponent("30-day trial");
-                if (success != true)
-                {
-                    MessageBox.Show(new Form(), mailman.LastErrorText, "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                
-
-                //  To connect through an HTTP proxy, set the HttpProxyHostname
-                //  and HttpProxyPort properties to the hostname (or IP address)
-                //  and port of the HTTP proxy.  Typical port numbers used by
-                //  HTTP proxy servers are 3128 and 8080.
-                mailman.HttpProxyHostname = ProxyServerTB.Text;
-                mailman.HttpProxyPort = Convert.ToInt32(ProxyPortTB.Text);
-
-                //  Important:  Your HTTP proxy server must allow non-HTTP
-                //  traffic to pass.  Otherwise this does not work.
-
-                //  Set the SMTP server.
-                mailman.SmtpHost = SmtpServer.Text;
-
-                //  Set the SMTP login/password (if required)
-                mailman.SmtpUsername = UserName.Text;
-                mailman.SmtpPassword = Password.Text;
-                
-                //  Create a new email object
-                Chilkat.Email email = new Chilkat.Email();
-
-                email.Subject = Subject.Text;
-                email.Body = mail_message.Message;
-                email.From = From.Text;
-                if (mail_message.AttachmentCount != 0)
-                email.AddFileAttachment(mail_message.Attachments[0].ToString());
-                 
-                success = email.AddTo(To.Text, To.Text);
-
-                //  Call SendEmail to connect to the SMTP server via the HTTP proxy and send.
-                //  The connection (i.e. session) to the SMTP server remains
-                //  open so that subsequent SendEmail calls may use the
-                //  same connection.
-                success = mailman.SendEmail(email);
-                if (success != true)
-                {
-                    MessageBox.Show(new Form(), mailman.LastErrorText, "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Console.WriteLine(mailman.LastErrorText);
-                    return;
-                }
-
-                //  Some SMTP servers do not actually send the email until
-                //  the connection is closed.  In these cases, it is necessary to
-                //  call CloseSmtpConnection for the mail to be  sent.
-                //  Most SMTP servers send the email immediately, and it is
-                //  not required to close the connection.  We'll close it here
-                //  for the example:
-                success = mailman.CloseSmtpConnection();
-                if (success != true)
-                {
-                    MessageBox.Show(new Form(), "Connection to SMTP server not closed cleanly.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                MessageBox.Show(this,"Email message has sent.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                smtp.SendMail(mail_message);
+                //MessageBox.Show(this, "Email successfuly sent", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                Message_box dialog = new Message_box();
             }
             catch (SmtpClientException obj)
             {
@@ -1124,7 +1061,7 @@ namespace Email_Client
             }
         }
 
-        private bool CheckInputValidation(string smtp_server, string smtp_port, string user_name, string password, string from, string to,string cc,string bcc, string proxy_server, string proxy_port)
+        private bool CheckInputValidation(string smtp_server, string smtp_port, string user_name, string password, string from, string to, string cc, string bcc, string proxy_server, string proxy_port)
         {
             if (smtp_server.Equals(""))
             {
@@ -1136,7 +1073,8 @@ namespace Email_Client
                 MessageBox.Show(this, "You must provide smtp port number.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
-            else if (proxy_server.Equals("")) {
+            else if (proxy_server.Equals(""))
+            {
                 MessageBox.Show(this, "You must provide proxy address.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
@@ -1169,7 +1107,7 @@ namespace Email_Client
                 MessageBox.Show(this, "You must provide recipient email address.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
-            
+
             return true;
         }
 
@@ -1221,16 +1159,21 @@ namespace Email_Client
                 {
                     style |= System.Drawing.FontStyle.Underline;
                 }
-
-                this.MailMessage.SelectionFont = new Font(((ToolStripComboBox)this.FormattingToolStrip.Items[0]).Text, Convert.ToSingle(((ToolStripComboBox)this.FormattingToolStrip.Items[1]).Text), style);
-                this.MailMessage.Focus();
+                try
+                {
+                    this.MailMessage.SelectionFont = new Font(((ToolStripComboBox)this.FormattingToolStrip.Items[0]).Text, Convert.ToSingle(((ToolStripComboBox)this.FormattingToolStrip.Items[1]).Text), style);
+                    this.MailMessage.Focus();
+                }
+                catch (Exception)
+                {
+                }
             }
         }
 
         private Bitmap CreateFontColorIcon(Color color)
         {
             Bitmap bmp = Email_Client.Properties.Resources.fontcolor;
-      
+
             for (int x = 0; x < bmp.Width; x++)
             {
                 for (int y = 12; y < bmp.Height; y++)
@@ -1256,6 +1199,5 @@ namespace Email_Client
 
             return bmp;
         }
-
     }
 }

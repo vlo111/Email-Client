@@ -95,6 +95,10 @@ namespace Email_Client
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.SmtpLogOn = new System.Windows.Forms.GroupBox();
+            this.ProxyPortTB = new System.Windows.Forms.TextBox();
+            this.ProxyServerTB = new System.Windows.Forms.TextBox();
+            this.ProcyPortL = new System.Windows.Forms.Label();
+            this.ProxyServerL = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.TextBox();
             this.UserName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -107,10 +111,6 @@ namespace Email_Client
             this.EmailTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.ProgressLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ProxyServerL = new System.Windows.Forms.Label();
-            this.ProcyPortL = new System.Windows.Forms.Label();
-            this.ProxyServerTB = new System.Windows.Forms.TextBox();
-            this.ProxyPortTB = new System.Windows.Forms.TextBox();
             this.EmailTab.SuspendLayout();
             this.CheckMailTab.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -325,7 +325,7 @@ namespace Email_Client
             // 
             // MailMessages
             // 
-            this.MailMessages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MailMessages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MailMessages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Sender,
@@ -579,10 +579,10 @@ namespace Email_Client
             // MailMessage
             // 
             this.MailMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MailMessage.Location = new System.Drawing.Point(89, 198);
+            this.MailMessage.Location = new System.Drawing.Point(87, 198);
             this.MailMessage.Name = "MailMessage";
             this.MailMessage.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.MailMessage.Size = new System.Drawing.Size(485, 106);
+            this.MailMessage.Size = new System.Drawing.Size(487, 88);
             this.MailMessage.TabIndex = 14;
             this.MailMessage.Text = "";
             this.EmailToolTip.SetToolTip(this.MailMessage, "Type message here");
@@ -605,7 +605,7 @@ namespace Email_Client
             this.FontBackgroundColor});
             this.FormattingToolStrip.Location = new System.Drawing.Point(89, 168);
             this.FormattingToolStrip.Name = "FormattingToolStrip";
-            this.FormattingToolStrip.Size = new System.Drawing.Size(374, 25);
+            this.FormattingToolStrip.Size = new System.Drawing.Size(393, 25);
             this.FormattingToolStrip.TabIndex = 13;
             // 
             // FontStyle
@@ -618,8 +618,8 @@ namespace Email_Client
             "Verdana"});
             this.FontStyle.Name = "FontStyle";
             this.FontStyle.Size = new System.Drawing.Size(150, 25);
-            this.FontStyle.Text = "Arial";
             this.FontStyle.ToolTipText = "Font";
+            this.FontStyle.SelectedIndex = 0;
             this.FontStyle.SelectedIndexChanged += new System.EventHandler(this.FontStyle_SelectedIndexChanged);
             // 
             // FontSize
@@ -636,8 +636,8 @@ namespace Email_Client
             "36"});
             this.FontSize.Name = "FontSize";
             this.FontSize.Size = new System.Drawing.Size(75, 25);
-            this.FontSize.Text = "10";
             this.FontSize.ToolTipText = "Font Size";
+            this.FontSize.SelectedIndex = 0;
             this.FontSize.SelectedIndexChanged += new System.EventHandler(this.FontSize_SelectedIndexChanged);
             // 
             // Separator1
@@ -708,7 +708,7 @@ namespace Email_Client
             this.AttachmentToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddAttachment,
             this.DeleteAttachment});
-            this.AttachmentToolStrip.Location = new System.Drawing.Point(455, 101);
+            this.AttachmentToolStrip.Location = new System.Drawing.Point(509, 106);
             this.AttachmentToolStrip.Name = "AttachmentToolStrip";
             this.AttachmentToolStrip.Size = new System.Drawing.Size(65, 25);
             this.AttachmentToolStrip.TabIndex = 12;
@@ -739,10 +739,10 @@ namespace Email_Client
             // 
             this.Attachments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Attachments.HideSelection = false;
-            this.Attachments.Location = new System.Drawing.Point(89, 106);
+            this.Attachments.Location = new System.Drawing.Point(87, 106);
             this.Attachments.MultiSelect = false;
             this.Attachments.Name = "Attachments";
-            this.Attachments.Size = new System.Drawing.Size(360, 58);
+            this.Attachments.Size = new System.Drawing.Size(395, 58);
             this.Attachments.SmallImageList = this.images;
             this.Attachments.TabIndex = 11;
             this.EmailToolTip.SetToolTip(this.Attachments, "Attachments list");
@@ -784,9 +784,9 @@ namespace Email_Client
             // Bcc
             // 
             this.Bcc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bcc.Location = new System.Drawing.Point(368, 51);
+            this.Bcc.Location = new System.Drawing.Point(398, 51);
             this.Bcc.Name = "Bcc";
-            this.Bcc.Size = new System.Drawing.Size(206, 21);
+            this.Bcc.Size = new System.Drawing.Size(176, 21);
             this.Bcc.TabIndex = 7;
             this.EmailToolTip.SetToolTip(this.Bcc, "Type recipients\' email addresses, separated by semicolons or commas");
             // 
@@ -802,9 +802,9 @@ namespace Email_Client
             // To
             // 
             this.To.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.To.Location = new System.Drawing.Point(368, 24);
+            this.To.Location = new System.Drawing.Point(398, 24);
             this.To.Name = "To";
-            this.To.Size = new System.Drawing.Size(206, 21);
+            this.To.Size = new System.Drawing.Size(176, 21);
             this.To.TabIndex = 5;
             this.EmailToolTip.SetToolTip(this.To, "Type recipients\' email addresses, separated by semicolons or commas");
             // 
@@ -883,6 +883,44 @@ namespace Email_Client
             this.SmtpLogOn.TabIndex = 0;
             this.SmtpLogOn.TabStop = false;
             this.SmtpLogOn.Text = "Log on to Smtp Server";
+            // 
+            // ProxyPortTB
+            // 
+            this.ProxyPortTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ProxyPortTB.Location = new System.Drawing.Point(398, 61);
+            this.ProxyPortTB.Name = "ProxyPortTB";
+            this.ProxyPortTB.Size = new System.Drawing.Size(176, 21);
+            this.ProxyPortTB.TabIndex = 11;
+            // 
+            // ProxyServerTB
+            // 
+            this.ProxyServerTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ProxyServerTB.Location = new System.Drawing.Point(117, 61);
+            this.ProxyServerTB.Name = "ProxyServerTB";
+            this.ProxyServerTB.Size = new System.Drawing.Size(176, 21);
+            this.ProxyServerTB.TabIndex = 10;
+            // 
+            // ProcyPortL
+            // 
+            this.ProcyPortL.AutoSize = true;
+            this.ProcyPortL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ProcyPortL.ForeColor = System.Drawing.Color.Black;
+            this.ProcyPortL.Location = new System.Drawing.Point(309, 61);
+            this.ProcyPortL.Name = "ProcyPortL";
+            this.ProcyPortL.Size = new System.Drawing.Size(68, 15);
+            this.ProcyPortL.TabIndex = 9;
+            this.ProcyPortL.Text = "Proxy Port :";
+            // 
+            // ProxyServerL
+            // 
+            this.ProxyServerL.AutoSize = true;
+            this.ProxyServerL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ProxyServerL.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ProxyServerL.Location = new System.Drawing.Point(16, 61);
+            this.ProxyServerL.Name = "ProxyServerL";
+            this.ProxyServerL.Size = new System.Drawing.Size(81, 15);
+            this.ProxyServerL.TabIndex = 8;
+            this.ProxyServerL.Text = "Proxy Server :";
             // 
             // Password
             // 
@@ -989,44 +1027,6 @@ namespace Email_Client
             this.ProgressLabel.Name = "ProgressLabel";
             this.ProgressLabel.Size = new System.Drawing.Size(61, 17);
             this.ProgressLabel.Text = "Email Client";
-            // 
-            // ProxyServerL
-            // 
-            this.ProxyServerL.AutoSize = true;
-            this.ProxyServerL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProxyServerL.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ProxyServerL.Location = new System.Drawing.Point(16, 61);
-            this.ProxyServerL.Name = "ProxyServerL";
-            this.ProxyServerL.Size = new System.Drawing.Size(81, 15);
-            this.ProxyServerL.TabIndex = 8;
-            this.ProxyServerL.Text = "Proxy Server :";
-            // 
-            // ProcyPortL
-            // 
-            this.ProcyPortL.AutoSize = true;
-            this.ProcyPortL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProcyPortL.ForeColor = System.Drawing.Color.Black;
-            this.ProcyPortL.Location = new System.Drawing.Point(309, 61);
-            this.ProcyPortL.Name = "ProcyPortL";
-            this.ProcyPortL.Size = new System.Drawing.Size(68, 15);
-            this.ProcyPortL.TabIndex = 9;
-            this.ProcyPortL.Text = "Proxy Port :";
-            // 
-            // ProxyServerTB
-            // 
-            this.ProxyServerTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProxyServerTB.Location = new System.Drawing.Point(117, 61);
-            this.ProxyServerTB.Name = "ProxyServerTB";
-            this.ProxyServerTB.Size = new System.Drawing.Size(176, 21);
-            this.ProxyServerTB.TabIndex = 10;
-            // 
-            // ProxyPortTB
-            // 
-            this.ProxyPortTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProxyPortTB.Location = new System.Drawing.Point(398, 61);
-            this.ProxyPortTB.Name = "ProxyPortTB";
-            this.ProxyPortTB.Size = new System.Drawing.Size(176, 21);
-            this.ProxyPortTB.TabIndex = 11;
             // 
             // EmailClient
             // 

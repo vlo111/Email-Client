@@ -52,9 +52,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ChilkatDotNet46">
-      <HintPath>..\..\..\..\..\Downloads\chilkatdotnet46-vs2017-9.5.0-x64\chilkatdotnet46-vs2017-9.5.0-x64\ChilkatDotNet46.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -74,6 +71,12 @@
     <Compile Include="MailDecoder.cs" />
     <Compile Include="MailEncoder.cs" />
     <Compile Include="MailMessage.cs" />
+    <Compile Include="Message_box.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Message_box.Designer.cs">
+      <DependentUpon>Message_box.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pop3Client.cs" />
     <Compile Include="Pop3ClientException.cs" />
     <Compile Include="Program.cs" />
@@ -81,6 +84,9 @@
     <EmbeddedResource Include="EmailClient.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EmailClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Message_box.resx">
+      <DependentUpon>Message_box.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -147,6 +153,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\checkmark.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
