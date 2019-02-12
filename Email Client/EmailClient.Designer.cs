@@ -325,7 +325,7 @@ namespace Email_Client
             // 
             // MailMessages
             // 
-            this.MailMessages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MailMessages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MailMessages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Sender,
@@ -618,8 +618,8 @@ namespace Email_Client
             "Verdana"});
             this.FontStyle.Name = "FontStyle";
             this.FontStyle.Size = new System.Drawing.Size(150, 25);
+            this.FontStyle.Text = "Arial";
             this.FontStyle.ToolTipText = "Font";
-            this.FontStyle.SelectedIndex = 0;
             this.FontStyle.SelectedIndexChanged += new System.EventHandler(this.FontStyle_SelectedIndexChanged);
             // 
             // FontSize
@@ -636,8 +636,8 @@ namespace Email_Client
             "36"});
             this.FontSize.Name = "FontSize";
             this.FontSize.Size = new System.Drawing.Size(75, 25);
+            this.FontSize.Text = "8";
             this.FontSize.ToolTipText = "Font Size";
-            this.FontSize.SelectedIndex = 0;
             this.FontSize.SelectedIndexChanged += new System.EventHandler(this.FontSize_SelectedIndexChanged);
             // 
             // Separator1
@@ -940,6 +940,7 @@ namespace Email_Client
             this.UserName.Size = new System.Drawing.Size(176, 21);
             this.UserName.TabIndex = 6;
             this.EmailToolTip.SetToolTip(this.UserName, "Type user name");
+            this.UserName.TextChanged += new System.EventHandler(this.UserName_TextChanged);
             // 
             // label4
             // 
@@ -970,6 +971,7 @@ namespace Email_Client
             this.SmtpPort.Name = "SmtpPort";
             this.SmtpPort.Size = new System.Drawing.Size(176, 21);
             this.SmtpPort.TabIndex = 3;
+            this.SmtpPort.Text = "587";
             this.EmailToolTip.SetToolTip(this.SmtpPort, "Type smtp server port number");
             this.SmtpPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SmtpPort_KeyPress);
             // 
@@ -980,6 +982,7 @@ namespace Email_Client
             this.SmtpServer.Name = "SmtpServer";
             this.SmtpServer.Size = new System.Drawing.Size(176, 21);
             this.SmtpServer.TabIndex = 2;
+            this.SmtpServer.Text = "smtp.gmail.com";
             this.EmailToolTip.SetToolTip(this.SmtpServer, "Type smtp server address");
             // 
             // label2

@@ -21,12 +21,15 @@ namespace Email_Client
         string email = "";
         int msg_id = 0;
         ArrayList attached_file_names;
+        TextBox userenameToFrom = new TextBox();
 
 
         public EmailClient()
         {
             InitializeComponent();
             this.SetSelectionFont();
+            userenameToFrom = From;
+
             this.attachments = new ArrayList();
             this.popAttachmentsIndex = new ArrayList();
             this.attached_file_names = new ArrayList();
@@ -125,7 +128,7 @@ namespace Email_Client
 
         private void Send_Click(object sender, EventArgs e)
         {
-            if (this.CheckInputValidation(SmtpServer.Text, SmtpPort.Text, UserName.Text, Password.Text, From.Text, To.Text, Cc.Text, Bcc.Text, ProxyServerTB.Text, ProxyPortTB.Text))
+            if (this.CheckInputValidation(SmtpServer.Text, SmtpPort.Text, UserName.Text, Password.Text, From.Text, To.Text, Cc.Text, Bcc.Text))
             {
                 if (this.EmailValidation(this.From.Text))
                 {
@@ -173,24 +176,26 @@ namespace Email_Client
                     {
                         if (isRecipient == true)
                         {
-                            Rtf2Html rtf = new Rtf2Html();
-                            string Html = rtf.ConvertRtfToHtml(this.MailMessage);
+                            try
+                            {
+                                Rtf2Html rtf = new Rtf2Html();
+                                string Html = rtf.ConvertRtfToHtml(this.MailMessage);
 
-                            MailMessage mail_message = new MailMessage();
-                            mail_message.From = this.From.Text;
-                            mail_message.To = this.To.Text;
-                            mail_message.CC = this.Cc.Text;
-                            mail_message.BCC = this.Bcc.Text;
-                            mail_message.Subject = this.Subject.Text;
-                            mail_message.MailType = MailEncodingType.HTML;
-                            mail_message.MailPriority = MailSendPriority.NORMAL;
-                            mail_message.Message = Html;
-                            mail_message.Attachments = this.attachments;
+                                MailMessage mail_message = new MailMessage();
+                                mail_message.From = this.From.Text;
+                                mail_message.To = this.To.Text;
+                                mail_message.CC = this.Cc.Text;
+                                mail_message.BCC = this.Bcc.Text;
+                                mail_message.Subject = this.Subject.Text;
+                                mail_message.MailType = MailEncodingType.HTML;
+                                mail_message.MailPriority = MailSendPriority.NORMAL;
+                                mail_message.Message = Html;
+                                mail_message.Attachments = this.attachments;
 
-                            //Thread thread = new Thread(new ParameterizedThreadStart(this.SendEmail));
-                            //thread.Start(mail_message);
-                            SendEmail(mail_message);
-                            Message_box dialog = new Message_box();
+                                SendEmail(mail_message);
+                            }
+                            catch (Exception){}
+
                         }
                         else
                         {
@@ -1050,7 +1055,6 @@ namespace Email_Client
                 smtp.Disconnected += new DisconnectEventHandler(smtp_Disconnected);
 
                 smtp.SendMail(mail_message);
-                //MessageBox.Show(this, "Email successfuly sent", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 Message_box dialog = new Message_box();
             }
             catch (SmtpClientException obj)
@@ -1061,7 +1065,7 @@ namespace Email_Client
             }
         }
 
-        private bool CheckInputValidation(string smtp_server, string smtp_port, string user_name, string password, string from, string to, string cc, string bcc, string proxy_server, string proxy_port)
+        private bool CheckInputValidation(string smtp_server, string smtp_port, string user_name, string password, string from, string to, string cc, string bcc)
         {
             if (smtp_server.Equals(""))
             {
@@ -1071,16 +1075,6 @@ namespace Email_Client
             else if (smtp_port.Equals(""))
             {
                 MessageBox.Show(this, "You must provide smtp port number.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (proxy_server.Equals(""))
-            {
-                MessageBox.Show(this, "You must provide proxy address.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (proxy_port.Equals(""))
-            {
-                MessageBox.Show(this, "You must provide proxy port number.", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
             else if (user_name.Equals(""))
@@ -1198,6 +1192,16 @@ namespace Email_Client
             }
 
             return bmp;
+        }
+        /// <summary>
+        /// Using this method in the field (From) is written the value "UserName" 
+        /// </summary>
+        /// <param name="sender"> TextBox - UserName</param>
+        /// <param name="e"></param>
+        private void UserName_TextChanged(object sender, EventArgs e)
+        {
+            userenameToFrom = (TextBox)sender;
+            From.Text = userenameToFrom.Text;
         }
     }
 }
