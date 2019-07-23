@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email Client", "Email Client\Email Client.csproj", "{0E43E86D-D8FC-44A6-92F5-ED28822ADC8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email_Client", "Email_Client\Email_Client.csproj", "{E2C2F056-1CC9-4740-9FD3-FD6BB8C4B1E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +17,15 @@ Global
 		{0E43E86D-D8FC-44A6-92F5-ED28822ADC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E43E86D-D8FC-44A6-92F5-ED28822ADC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E43E86D-D8FC-44A6-92F5-ED28822ADC8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2C2F056-1CC9-4740-9FD3-FD6BB8C4B1E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2C2F056-1CC9-4740-9FD3-FD6BB8C4B1E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2C2F056-1CC9-4740-9FD3-FD6BB8C4B1E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2C2F056-1CC9-4740-9FD3-FD6BB8C4B1E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55AC3CB4-8BCA-4811-A8FE-3C8D05FA02C1}
 	EndGlobalSection
 EndGlobal
