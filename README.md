@@ -12,7 +12,7 @@
 <td ><img src="https://image.prntscr.com/image/1eugpdn8RXK7lU8fQx1Axg.png" /></td>
   </tr>
   <tr>
-<td ><img src="https://image.prntscr.com/image/oSE-kwqmQ7qdouHGJOA0Rg.png" /></td>
+<td ><img src="https://image.prntscr.com/image/knqLa16wRV27l1n-WLaHlA.png" /></td>
 </tr>
 </tbody>
 </table>
