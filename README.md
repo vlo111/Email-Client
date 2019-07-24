@@ -9,7 +9,8 @@
 <td align="center">Winforms application, which serves for sending mail through SMTP or a proxy server</td>
 </tr>
 <tr>
-<td ><img src="https://image.prntscr.com/image/_GlFBNMlQli2iGB1QnVjDg.png" /></td>
+<td ><img src="https://image.prntscr.com/image/1eugpdn8RXK7lU8fQx1Axg.png" /></td>
+<td ><img src="https://image.prntscr.com/image/oSE-kwqmQ7qdouHGJOA0Rg.png" /></td>
 </tr>
 </tbody>
 </table>
