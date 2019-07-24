@@ -127,7 +127,7 @@ namespace Email_Client
             this.bunifuThinButtonSend.ActiveFillColor = System.Drawing.Color.Tomato;
             this.bunifuThinButtonSend.ActiveForecolor = System.Drawing.Color.DarkSlateGray;
             this.bunifuThinButtonSend.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(41)))), ((int)(((byte)(91)))));
-            this.bunifuThinButtonSend.BackColor = System.Drawing.Color.Maroon;
+            this.bunifuThinButtonSend.BackColor = System.Drawing.Color.ForestGreen;
             this.bunifuThinButtonSend.ButtonText = "OK";
             this.bunifuThinButtonSend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuThinButtonSend.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -153,7 +153,7 @@ namespace Email_Client
             // Message_box
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(264, 281);
             this.Controls.Add(this.bunifuThinButtonSend);

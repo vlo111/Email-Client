@@ -8,10 +8,15 @@ namespace Email_Client
 {
     public partial class LoginEMail : Form
     {
+        public static SmtpClient smtp = null;
+        string _exception_type = "success";
+        bool ShowHidePasswordButton = true;// Defaulf Hide/ // ...true... //
         public LoginEMail()
         {
             InitializeComponent();
+            bunifuFlatButtonShowHidePassword.Hide();
         }
+        #region Singlton For one Form
 
         private static LoginEMail _loginEMail;
         public static LoginEMail LoginEMailInstance
@@ -25,9 +30,14 @@ namespace Email_Client
                 return _loginEMail;
             }
         }
-        public static SmtpClient smtp = null;
+        #endregion
+
         #region Draw a blue border in panel
-        // Draw a blue border around the inside of the Panel.
+        /// <summary>
+        /// Draw a blue border around the inside of the Panel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             Rectangle rect = panel1.ClientRectangle;
@@ -38,23 +48,38 @@ namespace Email_Client
         #endregion     
 
         #region Window Close and minimaze
+        /// <summary>
+        /// Panel Close |label|
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void label4_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+        /// <summary>
+        /// Panel minimazed |label|
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void label5_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
         #endregion
-        #region Further and Textboxs click
-
+        
+        #region Further click and Textboxs Keypress ENTER
+        /// <summary>
+        /// Check Smtp Server/Port and Username/Password, return (A new Message) FORM
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bunifuThinButtonFurther_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(bunifuTextboxLogin.text) &&
-                !string.IsNullOrEmpty(bunifuTextboxPassword.text) &&
+                !string.IsNullOrEmpty(bunifuMaterialTextboxPassword.Text) &&
                 bunifuTextboxLogin.text != "Email address mail" &&
-                bunifuTextboxPassword.text != "Password")
+                bunifuMaterialTextboxPassword.Text != "Password")
             {
                 try
                 {
@@ -66,7 +91,7 @@ namespace Email_Client
                             if (Internet.IsConnectedToInternet())
                             {
                                 smtp.UserName = bunifuTextboxLogin.text;
-                                smtp.Password = bunifuTextboxPassword.text;
+                                smtp.Password = bunifuMaterialTextboxPassword.Text;
 
 
                                 smtp.ConnectionEstablishing += new ConnectEventHandler(smtp_ConnectionEstablishing);
@@ -99,6 +124,7 @@ namespace Email_Client
                 }
                 catch (FormatException)
                 {
+                    _exception_type = "port_error";
                     MessageBox.Show(this, "Smtp Port name is not valid. Please, enter correct Port name", "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.DialogResult = DialogResult.OK;
                 }
@@ -115,13 +141,16 @@ namespace Email_Client
                 {
                     if (smtp != null)
                     {
-                        string a = "success";
-                        if (smtp.errorMessage == a)
+                        if (smtp.errorMessage == _exception_type)
                         {
                             this.Hide();
                             SmtpDialog._flagHideFirstForm = true;
                             Compose compose = new Compose();
                             compose.ShowDialog();
+                        }
+                        else if (_exception_type == "port_error")
+                        {
+                            _exception_type = "success";
                         }
                         else if (smtp.errorMessage != "")
                             MessageBox.Show(this, smtp.errorMessage, "Email Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -134,7 +163,12 @@ namespace Email_Client
             }
         }
         // Text boxs enter
-        private void bunifuTextbox_KeyPress(object sender, EventArgs e)
+        /// <summary>
+        /// Enter submit Password/Login Textboxs, call Button Further click method in order to Connect Email server
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bunifuTextboxLoginAndPassword_KeyPress(object sender, EventArgs e)
         {
             KeyPressEventArgs ke = e as KeyPressEventArgs;
             if (ke != null && ke.KeyChar == (char)13)
@@ -143,7 +177,9 @@ namespace Email_Client
                 ke.Handled = true;
             }
         }
+
         #endregion
+        
         #region SMTP Settings Events
 
         void smtp_ConnectionEstablishing(object sender, string Server, int Port)
@@ -239,7 +275,13 @@ namespace Email_Client
             }
         }
         #endregion
+        
         #region Check Email Regex
+        /// <summary>
+        /// Validation Email address through Regex expression
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         private bool EmailValidation(string email)
         {
             Regex regx = new Regex(@"([a-zA-Z_0-9.-]+\@[a-zA-Z_0-9.-]+\.\w+)", RegexOptions.IgnoreCase);
@@ -249,8 +291,9 @@ namespace Email_Client
             }
             return false;
         }
-        // I can use it's too ))
-        bool IsValidEmail(string email)
+
+        #region // I can use it's too ))
+        /*bool IsValidEmail(string email)
         {
             try
             {
@@ -262,15 +305,70 @@ namespace Email_Client
                 return false;
             }
         }
+        */
+        #endregion
+        
         #endregion
         #region Move Window
+        /// <summary>
+        /// Mouse Move Panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             Mouse_Move.Drag_Form(Handle, e);
         }
         #endregion
-        #region Place Holder
 
+        #region Go Back Form
+        /// <summary>
+        /// Go Back Smtp Server/Port Form(First Form)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bunifuFlatButtonGoBack_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+        #endregion
+
+        #region Custom Place Holder
+        /// <summary>
+        /// ForeColor = Color.Black;
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bunifuMaterialTextboxPassword_Enter(object sender, EventArgs e)
+        {
+            if (bunifuMaterialTextboxPassword.Text == "Enter password")
+            {
+                bunifuMaterialTextboxPassword.Text = "";
+            }
+            bunifuMaterialTextboxPassword.ForeColor = Color.Black;
+        }
+
+        /// <summary>
+        /// ForeColor = Color.Gray IF LoginTEXT = "Email address mail" //  ForeColor = Color.Silver;
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bunifuMaterialTextboxPassword_Leave(object sender, EventArgs e)
+        {
+            if (bunifuMaterialTextboxPassword.Text == "")
+            {
+                bunifuMaterialTextboxPassword.ForeColor = Color.Gray;
+                bunifuMaterialTextboxPassword.Text = "Enter password";
+            }
+            else
+                bunifuMaterialTextboxPassword.ForeColor = Color.Silver;
+        }
+        
+        /// <summary>
+        ///  ForeColor = Color.Black;
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bunifuTextboxLogin_Enter(object sender, EventArgs e)
         {
             if (bunifuTextboxLogin.text == "Email address mail")
@@ -278,6 +376,11 @@ namespace Email_Client
             bunifuTextboxLogin.ForeColor = Color.Black;
         }
 
+        /// <summary>
+        /// ForeColor = Color.Gray IF LoginTEXT = "Email address mail" //  ForeColor = Color.Silver;
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bunifuTextboxLogin_Leave(object sender, EventArgs e)
         {
             if (bunifuTextboxLogin.text == "")
@@ -289,30 +392,47 @@ namespace Email_Client
                 bunifuTextboxLogin.ForeColor = Color.Silver;
         }
 
-        private void bunifuTextboxPassword_Enter(object sender, EventArgs e)
-        {
-            if (bunifuTextboxPassword.text == "Password")
-                bunifuTextboxPassword.text = "";
-            bunifuTextboxPassword.ForeColor = Color.Black;
-        }
-
-        private void bunifuTextboxPassword_Leave(object sender, EventArgs e)
-        {
-            if (bunifuTextboxPassword.text == "")
-            {
-                bunifuTextboxPassword.ForeColor = Color.Gray;
-                bunifuTextboxPassword.text = "Password";
-            }
-            else
-                bunifuTextboxPassword.ForeColor = Color.Silver;
-        }
-
         #endregion
 
-
-        private void bunifuFlatButtonGoBack_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Change icon Show and Hide button // .. Show and Hide Password if click button(Show/Hide) .. //
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bunifuFlatButtonShowHidePassword_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            if (bunifuMaterialTextboxPassword.isPassword == true)
+            {
+                bunifuFlatButtonShowHidePassword.BackgroundImage = Properties.Resources.show;
+                ShowHidePasswordButton = false;
+                bunifuMaterialTextboxPassword.isPassword = false;
+            }
+            else
+            {
+                bunifuFlatButtonShowHidePassword.BackgroundImage = Properties.Resources.hide;
+                ShowHidePasswordButton = true;
+                bunifuMaterialTextboxPassword.isPassword = true;
+            }
+        }
+        /// <summary>
+        /// Every write value, need to set attribute isPassword true/false(show, hide) // Icon hide/show if value 0 || .. //
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bunifuMaterialTextboxPassword_OnValueChanged(object sender, EventArgs e)
+        {
+            if (bunifuMaterialTextboxPassword.Text != "" && bunifuMaterialTextboxPassword.Text != "Enter password")
+            {
+                bunifuFlatButtonShowHidePassword.Show();
+                if (ShowHidePasswordButton)
+                    bunifuMaterialTextboxPassword.isPassword = true;
+            }
+            else
+            {
+                bunifuFlatButtonShowHidePassword.Hide();
+                if (!ShowHidePasswordButton)
+                    bunifuMaterialTextboxPassword.isPassword = false;
+            }
         }
     }
 }

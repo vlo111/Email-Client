@@ -186,7 +186,6 @@ namespace Email_Client
         }
         #endregion
 
-
         #region FormattingToolStrip
         private void Bold_Click(object sender, EventArgs e)
         {
@@ -327,7 +326,6 @@ namespace Email_Client
         {
             this.SetSelectionFont();
         }
-
         private void FontSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SetSelectionFont();
@@ -352,6 +350,15 @@ namespace Email_Client
                 this._lock = false;
             }
         }
+
+
+        #region Clear
+
+        /// <summary>
+        /// Clear All Form data as default
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBoxClear_Click(object sender, EventArgs e)
         {
             SmtpDialog.SmtpName = "";
@@ -372,8 +379,14 @@ namespace Email_Client
             FontStyle.SelectedItem = "Arial";
             FontSize.SelectedItem = "10";
         }
+        #endregion
 
         #region Move Window
+        /// <summary>
+        /// Mouse Move ComposePanel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComposePanel_MouseMove(object sender, MouseEventArgs e)
         {
             Mouse_Move.Drag_Form(Handle, e);

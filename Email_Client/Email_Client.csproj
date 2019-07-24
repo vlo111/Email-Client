@@ -135,6 +135,8 @@
     <None Include="Resources\Icons\fontcolor.png" />
     <None Include="Resources\Icons\paper.png" />
     <None Include="Resources\Icons\fontbackcolor.png" />
+    <None Include="Resources\Icons\show.png" />
+    <None Include="Resources\Icons\hide.png" />
     <Content Include="Resources\Icons\smtp_server %281%29.png" />
     <Content Include="Resources\Icons\smtp_server.png" />
   </ItemGroup>
