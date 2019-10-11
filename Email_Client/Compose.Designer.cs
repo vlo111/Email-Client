@@ -34,8 +34,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.bunifuDragControl1 = new ns1.BunifuDragControl(this.components);
-            this.bunifuElipseForm = new ns1.BunifuElipse(this.components);
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.bunifuElipseForm = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -43,14 +43,14 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.attachmentsList = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.bunifuThinButtonSend = new ns1.BunifuThinButton2();
+            this.bunifuThinButtonSend = new Bunifu.Framework.UI.BunifuThinButton2();
             this.pictureBoxClear = new System.Windows.Forms.PictureBox();
             this.pictureBoxCancelAttachment = new System.Windows.Forms.PictureBox();
             this.pictureBoxAttach = new System.Windows.Forms.PictureBox();
-            this.bunifuMetroTextboxSubject = new ns1.BunifuMetroTextbox();
-            this.bunifuMetroTextboxTo = new ns1.BunifuMetroTextbox();
-            this.bunifuMetroTextboxCc = new ns1.BunifuMetroTextbox();
-            this.bunifuMetroTextboxBcc = new ns1.BunifuMetroTextbox();
+            this.bunifuMetroTextboxSubject = new Bunifu.Framework.UI.BunifuMetroTextbox();
+            this.bunifuMetroTextboxTo = new Bunifu.Framework.UI.BunifuMetroTextbox();
+            this.bunifuMetroTextboxCc = new Bunifu.Framework.UI.BunifuMetroTextbox();
+            this.bunifuMetroTextboxBcc = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.richTextBoxMailMessage = new System.Windows.Forms.RichTextBox();
             this.FormattingToolStrip = new System.Windows.Forms.ToolStrip();
             this.FontStyle = new System.Windows.Forms.ToolStripComboBox();
@@ -506,8 +506,8 @@
         #endregion
 
         private System.Windows.Forms.Panel ComposePanel;
-        private ns1.BunifuDragControl bunifuDragControl1;
-        private ns1.BunifuElipse bunifuElipseForm;
+        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipseForm;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -515,17 +515,17 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private ns1.BunifuThinButton2 bunifuThinButtonSend;
+        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButtonSend;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ListView attachmentsList;
         private System.Windows.Forms.PictureBox pictureBoxAttach;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBoxClear;
         private System.Windows.Forms.PictureBox pictureBoxCancelAttachment;
-        private ns1.BunifuMetroTextbox bunifuMetroTextboxSubject;
-        private ns1.BunifuMetroTextbox bunifuMetroTextboxBcc;
-        private ns1.BunifuMetroTextbox bunifuMetroTextboxCc;
-        private ns1.BunifuMetroTextbox bunifuMetroTextboxTo;
+        private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextboxSubject;
+        private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextboxBcc;
+        private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextboxCc;
+        private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextboxTo;
         private System.Windows.Forms.RichTextBox richTextBoxMailMessage;
         private System.Windows.Forms.ToolStrip FormattingToolStrip;
         private System.Windows.Forms.ToolStripComboBox FontStyle;

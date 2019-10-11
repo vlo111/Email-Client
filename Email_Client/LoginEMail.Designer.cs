@@ -33,20 +33,20 @@ namespace Email_Client
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginEMail));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.bunifuFlatButtonGoBack = new ns1.BunifuFlatButton();
+            this.bunifuFlatButtonGoBack = new Bunifu.Framework.UI.BunifuFlatButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.bunifuDragControl1 = new ns1.BunifuDragControl(this.components);
-            this.bunifuElipse1 = new ns1.BunifuElipse(this.components);
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.ProgressLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.bunifuMaterialTextboxPassword = new ns1.BunifuMaterialTextbox();
-            this.bunifuElipseForPasswodTBox = new ns1.BunifuElipse(this.components);
-            this.bunifuFlatButtonShowHidePassword = new ns1.BunifuFlatButton();
-            this.bunifuThinButtonFurther = new ns1.BunifuThinButton2();
-            this.bunifuTextboxPassword = new ns1.BunifuTextbox();
-            this.bunifuTextboxLogin = new ns1.BunifuTextbox();
+            this.bunifuMaterialTextboxPassword = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.bunifuElipseForPasswodTBox = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.bunifuFlatButtonShowHidePassword = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.bunifuThinButtonFurther = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.bunifuTextboxPassword = new Bunifu.Framework.UI.BunifuTextbox();
+            this.bunifuTextboxLogin = new Bunifu.Framework.UI.BunifuTextbox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -343,20 +343,20 @@ namespace Email_Client
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private ns1.BunifuDragControl bunifuDragControl1;
-        private ns1.BunifuElipse bunifuElipse1;
+        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private ns1.BunifuTextbox bunifuTextboxLogin;
-        private ns1.BunifuTextbox bunifuTextboxPassword;
-        private ns1.BunifuThinButton2 bunifuThinButtonFurther;
+        private Bunifu.Framework.UI.BunifuTextbox bunifuTextboxLogin;
+        private Bunifu.Framework.UI.BunifuTextbox bunifuTextboxPassword;
+        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButtonFurther;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel ProgressLabel;
-        private ns1.BunifuFlatButton bunifuFlatButtonGoBack;
-        private ns1.BunifuMaterialTextbox bunifuMaterialTextboxPassword;
-        private ns1.BunifuElipse bunifuElipseForPasswodTBox;
-        private ns1.BunifuFlatButton bunifuFlatButtonShowHidePassword;
+        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButtonGoBack;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextboxPassword;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipseForPasswodTBox;
+        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButtonShowHidePassword;
     }
 }

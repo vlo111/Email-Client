@@ -40,10 +40,10 @@ namespace Email_Client
             this.Icon = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.bunifuDragControl1 = new ns1.BunifuDragControl(this.components);
-            this.bunifuElipseForm = new ns1.BunifuElipse(this.components);
-            this.bunifuThinButtonSend = new ns1.BunifuThinButton2();
-            this.bunifuElipse1 = new ns1.BunifuElipse(this.components);
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.bunifuElipseForm = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.bunifuThinButtonSend = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Icon)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -178,9 +178,9 @@ namespace Email_Client
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
-        private ns1.BunifuDragControl bunifuDragControl1;
-        private ns1.BunifuElipse bunifuElipseForm;
-        private ns1.BunifuThinButton2 bunifuThinButtonSend;
-        private ns1.BunifuElipse bunifuElipse1;
+        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipseForm;
+        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButtonSend;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }

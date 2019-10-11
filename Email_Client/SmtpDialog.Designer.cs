@@ -34,14 +34,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.bunifuThinButtonFurther = new ns1.BunifuThinButton2();
-            this.bunifuTextbox_port = new ns1.BunifuTextbox();
-            this.bunifuTextbox_server = new ns1.BunifuTextbox();
+            this.bunifuThinButtonFurther = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.bunifuTextbox_port = new Bunifu.Framework.UI.BunifuTextbox();
+            this.bunifuTextbox_server = new Bunifu.Framework.UI.BunifuTextbox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.bunifuDragControl1 = new ns1.BunifuDragControl(this.components);
-            this.bunifuElipse1 = new ns1.BunifuElipse(this.components);
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.Error_Label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -245,17 +245,17 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private ns1.BunifuThinButton2 bunifuThinButtonFurther;
-        private ns1.BunifuTextbox bunifuTextbox_port;
+        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButtonFurther;
+        private Bunifu.Framework.UI.BunifuTextbox bunifuTextbox_port;
         private System.Windows.Forms.Label label2;
-        private ns1.BunifuTextbox bunifuTextbox_server;
+        private Bunifu.Framework.UI.BunifuTextbox bunifuTextbox_server;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private ns1.BunifuDragControl bunifuDragControl1;
-        private ns1.BunifuElipse bunifuElipse1;
+        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Label Error_Label;
     }
 }
